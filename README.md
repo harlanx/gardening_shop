@@ -1,6 +1,6 @@
 # gardening_shop
 
-A new Flutter project.
+A responsive and adaptive Home Page of a shopping site themed for Gardening Products.
 
 ## Getting Started
 
