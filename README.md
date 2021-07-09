@@ -2,6 +2,8 @@
 
 A responsive and adaptive Home Page of a shopping site themed for Gardening Products created using Dart with Flutter SDK for Web.
 
+All assets except the icons does not belong to me. Only used for educational purposes only.
+
 ## Previews
 
 ### Desktop
