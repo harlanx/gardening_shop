@@ -2,7 +2,9 @@ class Product {
   int id;
   String name;
   double pricing;
-  double? oldPricing;
+
+  /// Must be in range between 1 to 100;
+  double? discount;
   int remaining;
   int sold;
   List<String> images;
@@ -12,13 +14,22 @@ class Product {
     required this.id,
     required this.name,
     required this.pricing,
-    this.oldPricing,
+    this.discount,
     required this.remaining,
     required this.sold,
     required this.images,
     required this.rating,
     required this.tags,
   });
+
+  double get discountedPrice {
+    if (discount == null) {
+      throw UnimplementedError('Cannot compute discounted price without the discount value provided');
+    } else {
+      //assert(discount! >= 1 && discount! <= 100, 'Discount must be in range between 1 to 100 only');
+      return double.parse((pricing - (pricing * (discount! / 100))).toStringAsFixed(2));
+    }
+  }
 }
 
 enum ProductCategory {

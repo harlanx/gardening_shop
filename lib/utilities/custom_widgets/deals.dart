@@ -76,7 +76,20 @@ class _DealsState extends State<Deals> {
                 ),
               ),
             ] else ...[
-              Placeholder()
+              Wrap(
+                alignment: WrapAlignment.start,
+                spacing: widget.itemSpacing,
+                runSpacing: widget.itemSpacing,
+                children: widget.items
+                    .map(
+                      (e) => SizedBox(
+                        height: widget.height,
+                        width: widget.itemWidth,
+                        child: ProductBox(product: e),
+                      ),
+                    )
+                    .toList(),
+              ),
             ],
           ],
         ),

@@ -17,88 +17,108 @@ class ProductBox extends StatefulWidget {
 class _ProductBoxState extends State<ProductBox> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 2,
-      child: Column(
-        children: [
-          Expanded(
-            flex: 60,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(
-                  widget.product.images[0],
-                  fit: BoxFit.cover,
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 40,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: Column(
+    return InkWell(
+      onTap: (){},
+      child: Card(
+        color: Colors.white,
+        elevation: 2,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 60,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Expanded(
-                    flex: 50,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        widget.product.name,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
+                  Image.asset(
+                    widget.product.images[0],
+                    fit: BoxFit.cover,
+                  ),
+                  if (widget.product.discount != null)
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: ClipOval(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: 40,
+                          color: Colors.green.shade700,
+                          child: Text(
+                            '${widget.product.discount!.toStringAsFixed(0)}%',
+                            style: TextStyle(fontWeight: FontWeight.w800),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 50,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Text(
-                                '₱${widget.product.pricing}',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                textAlign: TextAlign.start,
-                              ),
-                              if (widget.product.oldPricing != null)
-                                Text(
-                                  ' ₱${widget.product.oldPricing}',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500,
-                                      decoration: widget.product.oldPricing != null ? TextDecoration.lineThrough : TextDecoration.none,
-                                      decorationThickness: 2.0),
-                                  textAlign: TextAlign.start,
-                                ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.product.sold} Sold',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 40,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 50,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          widget.product.name,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 50,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                if (widget.product.discount != null)
+                                  Text(
+                                    '₱${widget.product.discountedPrice} ',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                Text(
+                                  '₱${widget.product.pricing}',
+                                  style: TextStyle(
+                                    color: widget.product.discount != null ? Colors.grey : Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    decoration: widget.product.discount != null ? TextDecoration.lineThrough : TextDecoration.none,
+                                    decorationThickness: 2.0,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              '${widget.product.sold} Sold',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -69,7 +69,7 @@ class SampleData {
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(20),
       pricing: RandomHelper.randRangeDouble(250, 700),
-      oldPricing: RandomHelper.randRangeDouble(700, 1000),
+      discount: RandomHelper.randRangeDouble(1, 40),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
       images: List.generate(3, (index) => RandomHelper.randImage()),

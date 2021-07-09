@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           controller: _bodyScrollController,
           shrinkWrap: true,
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 20, bottom: 20),
           scrollDirection: Axis.vertical,
           children: [
             PromoBanner(
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Deals(
               title: Row(
                 children: [
-                  Icon(Icons.star, color: Colors.yellow.shade300),
+                  Icon(Icons.star, color: Colors.yellow.shade700),
                   Text(
                     'Top Products',
                     style: TextStyle(
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Deals(
               title: Row(
                 children: [
-                  Icon(MdiIcons.fire, color: Colors.orange.shade500),
+                  Icon(MdiIcons.fire, color: Colors.red.shade500),
                   Text(
                     'Trending',
                     style: TextStyle(
@@ -121,8 +121,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              height: 250,
+              height: 261.5,
+              itemWidth: 161.5,
+              itemView: ItemView.grid,
               items: SampleData.discoverProducts,
+            ),
+            Divider(
+              color: Color(0xFF26d270),
+            ),
+            MoreDetail(
+              title: 'More Detail 1',
+              detail:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at consequat augue. Aenean vel velit orci. Integer pulvinar leo vel sem facilisis, sit amet consequat velit sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc commodo euismod ipsum vitae convallis. Aenean fringilla turpis et est gravida semper non eu velit. Phasellus efficitur tristique lectus in luctus. Phasellus consequat, nibh id mollis rhoncus, elit nibh blandit purus, et dignissim urna est quis dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas pharetra tempus augue eget lobortis. Sed placerat ante tellus. Duis porta sit amet tellus ac pellentesque.',
+            ),
+            MoreDetail(
+              title: 'More Detail 2',
+              detail:
+                  'In ac nisi molestie leo porta aliquam at sed tellus. Duis venenatis lacinia nulla sed placerat. Duis fringilla erat a tellus elementum, vel pharetra lectus commodo. Pellentesque ac massa a lorem imperdiet eleifend. Phasellus purus velit, laoreet dapibus nisi quis, egestas molestie purus. Cras at dui id nibh maximus iaculis eget a orci. Sed non dolor nec lacus elementum efficitur. Nulla cursus, diam nec accumsan euismod, enim elit posuere turpis, ac varius mi turpis vitae ex. Sed quis mi euismod, malesuada ante a, tincidunt urna. Vestibulum sed dignissim urna. Sed elementum leo id nisl volutpat gravida. Donec sit amet risus vel ante rutrum rhoncus.',
+            ),
+            MoreDetail(
+              title: 'More Detail 3',
+              detail:
+                  'Pellentesque convallis posuere velit, vitae vulputate ante dapibus vitae. Ut efficitur consequat lorem ultrices feugiat. Nulla facilisi. Duis tempor dignissim leo, sed interdum augue aliquam molestie. Praesent venenatis justo ac justo mattis, ac feugiat felis iaculis. Ut mollis mattis purus, quis sodales elit. Nam at nulla rutrum, sollicitudin lacus sit amet, sollicitudin leo.',
             ),
           ],
         ),
