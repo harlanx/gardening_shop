@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gardening_shop/models/models.dart';
-import 'package:gardening_shop/utilities/custom_widgets/custom_widgets.dart';
+
+import 'product_box.dart';
 
 class Deals extends StatefulWidget {
   ///Title of the deal
@@ -50,12 +51,26 @@ class _DealsState extends State<Deals> {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Align(
-              alignment: widget.titleAlignment,
-              child: widget.title,
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                Align(
+                  alignment: widget.titleAlignment,
+                  child: widget.title,
+                ),
+                InkWell(
+                  child: Text(
+                    'See more >>',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+              ],
             ),
             if (widget.itemView == ItemView.row) ...[
               Expanded(

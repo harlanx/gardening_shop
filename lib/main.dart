@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gardening_shop/screens/home_screen.dart';
+import 'package:gardening_shop/screens/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) =>HomeScreen(),
+        '/': (context) =>Home(),
       },
     );
   }

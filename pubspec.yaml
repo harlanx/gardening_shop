@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/icons/png/
     - assets/icons/svg/main_categories/
+    - assets/images/
     - assets/images/promos/main_promos/
     - assets/images/promos/side_promos/
     - assets/images/popups/

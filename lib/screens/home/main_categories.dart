@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gardening_shop/models/models.dart';
+part of '../../screens/home.dart';
 
 class MainCategories extends StatefulWidget {
   final List<MainCategoriesProperties> list;
@@ -86,7 +84,7 @@ class _MainCategoriesState extends State<MainCategories> {
   void _updateHoverState(bool hovered, int index) {
     hoveredIndex = index;
     if (hovered) {
-      hoveredColorState = Color(0xFF26d270);
+      hoveredColorState = Color(0xFF669933);
       hoveredTransformState = Matrix4.identity()
         ..scale(1.1)
         ..translate(-4.5, -4.5, 0);

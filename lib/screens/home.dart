@@ -1,28 +1,34 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gardening_shop/data/sample_data.dart';
+import 'package:gardening_shop/models/models.dart';
 import 'package:gardening_shop/utilities/custom_widgets/custom_widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+part 'home/promo_banner.dart';
+part 'home/main_categories.dart';
+part 'home/home_appbar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
+class Home extends StatefulWidget {
+  const Home({
     Key? key,
   }) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeState createState() => _HomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeState extends State<Home> {
   final ScrollController _bodyScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    Size _browserSize = MediaQuery.of(context).size;
-
+    Size _size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: HomeAppBar(),
+      appBar: HomeAppBar(sizeWidth: _size.width),
       body: Scrollbar(
         controller: _bodyScrollController,
         isAlwaysShown: true,
@@ -33,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           scrollDirection: Axis.vertical,
           children: [
             PromoBanner(
-              screenWidth: _browserSize.width,
+              screenWidth: _size.width,
               mainChildren: SampleData.mainPromos,
               sideChildren: SampleData.sidePromos,
             ),
@@ -127,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
               items: SampleData.discoverProducts,
             ),
             Divider(
-              color: Color(0xFF26d270),
+              color: Color(0xFF669933),
             ),
             MoreDetail(
               title: 'More Detail 1',

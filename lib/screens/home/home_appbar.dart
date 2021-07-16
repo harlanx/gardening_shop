@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+part of '../../screens/home.dart';
 
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final double sizeWidth;
   const HomeAppBar({
     Key? key,
+    required this.sizeWidth,
     this.preferredSize = const Size(double.infinity, 100),
   }) : super(key: key);
+
   @override
   final Size preferredSize;
 
@@ -15,14 +17,18 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _HomeAppBarState extends State<HomeAppBar> {
   final String _appName = 'Earthly';
-  final Widget _appIcon = Icon(MdiIcons.sproutOutline);
+  final Widget _appIcon = Image.asset(
+    'assets/images/earthly.png',
+    filterQuality: FilterQuality.medium,
+    height: 24,
+  );
 
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
       preferredSize: widget.preferredSize,
       child: Container(
-        color: Color(0xFF26d270),
+        color: Color(0xFF669933),
         child: Column(
           children: [
             SizedBox(
@@ -93,12 +99,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   _appIcon,
-                                  Text(
-                                    _appName.toUpperCase(),
-                                    style: TextStyle(
-                                      fontFamily: 'Righteous',
-                                    ),
-                                  ),
+                                  widget.sizeWidth > 500
+                                      ? Text(
+                                          _appName.toUpperCase(),
+                                          style: TextStyle(
+                                            fontFamily: 'Righteous',
+                                          ),
+                                        )
+                                      : SizedBox.shrink(),
                                 ],
                               ),
                               onTap: () {},
@@ -108,11 +116,40 @@ class _HomeAppBarState extends State<HomeAppBar> {
                       ),
                     ),
                   ),
-                  Flexible(
-                    child: Row(
-                      children: [
-                        Expanded(
+                  widget.sizeWidth > 500
+                      ? Flexible(
+                          child: Center(
+                            child: TextField(
+                              key: GlobalObjectKey('search'),
+                              decoration: InputDecoration(
+                                hintText: 'Search for your garden needs',
+                                hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide.none,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide.none,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.search,
+                                  color: Color(0xFF669933),
+                                ),
+                              ),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Center(
+                        child: IntrinsicWidth(
                           child: TextField(
+                            key: GlobalObjectKey('search'),
                             decoration: InputDecoration(
                               hintText: 'Search for your garden needs',
                               hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
@@ -126,6 +163,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide: BorderSide.none,
                               ),
+                              suffixIcon: Icon(
+                                Icons.search,
+                                color: Color(0xFF669933),
+                              ),
                             ),
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -133,14 +174,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                             ),
                           ),
                         ),
-                        IconButton(
-                          tooltip: 'Search',
-                          icon: Icon(Icons.search),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ),
+                      ),
                   Row(
                     children: [
                       IconButton(

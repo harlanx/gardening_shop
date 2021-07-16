@@ -1,8 +1,6 @@
-import 'package:gardening_shop/models/models.dart';
 import 'dart:math' as math;
+import 'package:gardening_shop/models/models.dart';
 import 'dart:convert';
-
-import 'package:gardening_shop/utilities/custom_widgets/custom_widgets.dart';
 
 class SampleData {
   static final List<MainCategoriesProperties> mainCategories = [

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+part of '../../screens/home.dart';
 
 class PromoBanner extends StatefulWidget {
   final List<MainPromoItem> mainChildren;
@@ -29,7 +27,7 @@ class _PromoBannerState extends State<PromoBanner> {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxHeight: 250,
+          maxHeight: widget.screenWidth > 600 ? 250 : 180,
           maxWidth: 980,
         ),
         child: Stack(
@@ -147,22 +145,3 @@ class _PromoBannerState extends State<PromoBanner> {
   }
 }
 
-abstract class PromoItem {
-  final String image;
-  final String url;
-  PromoItem({required this.image, required this.url});
-}
-
-class MainPromoItem extends PromoItem {
-  MainPromoItem({
-    required String image,
-    required String url,
-  }) : super(image: image, url: url);
-}
-
-class SidePromoItem extends PromoItem {
-  SidePromoItem({
-    required String image,
-    required String url,
-  }) : super(image: image, url: url);
-}
