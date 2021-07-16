@@ -1,16 +1,17 @@
 # gardening_shop
 
-A responsive and adaptive Home Page of a shopping site themed for Gardening Products.
+A responsive and adaptive Home Page of a shopping site themed for Gardening Products created using Dart with Flutter SDK for Web.
 
-## Getting Started
+All assets except the icons does not belong to me and was only used for educational purposes only.
 
-This project is a starting point for a Flutter application.
+## Previews
 
-A few resources to get you started if this is your first Flutter project:
+### Desktop
+[<img src="docs/desktop_preview_1.jpeg" width="400"/>](docs/desktop_preview_1.jpeg) [<img src="docs/desktop_preview_2.jpeg" width="400"/>](docs/desktop_preview_2.jpeg)
+[<img src="docs/desktop_preview_3.jpeg" width="400"/>](docs/desktop_preview_3.jpeg) [<img src="docs/desktop_preview_4.jpeg" width="400"/>](docs/desktop_preview_4.jpeg)
+[<img src="docs/desktop_preview_5.jpeg" width="400"/>](docs/desktop_preview_5.jpeg)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Mobile
+[<img src="docs/mobile_preview_1.jpeg" width="200"/>](docs/mobile_preview_1.jpeg) [<img src="docs/mobile_preview_2.jpeg" width="200"/>](docs/mobile_preview_2.jpeg)
+[<img src="docs/mobile_preview_3.jpeg" width="200"/>](docs/mobile_preview_3.jpeg) [<img src="docs/mobile_preview_4.jpeg" width="200"/>](docs/mobile_preview_4.jpeg)
+[<img src="docs/mobile_preview_5.jpeg" width="200"/>](docs/mobile_preview_5.jpeg) [<img src="docs/mobile_preview_6.jpeg" width="200"/>](docs/mobile_preview_6.jpeg)
