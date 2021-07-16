@@ -18,7 +18,7 @@ class _ProductBoxState extends State<ProductBox> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Card(
         color: Colors.white,
         elevation: 2,
@@ -33,6 +33,48 @@ class _ProductBoxState extends State<ProductBox> {
                     widget.product.images[0],
                     fit: BoxFit.cover,
                   ),
+                  /* FractionallySizedBox(
+                    alignment: Alignment.bottomRight,
+                    heightFactor: 0.2,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '${widget.product.rating}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            /* shadows: [
+                              Shadow(
+                                color: Colors.black,
+                                blurRadius: 5.0,
+                                offset: Offset(-2, -2),
+                              ),
+                              Shadow(
+                                color: Colors.black,
+                                blurRadius: 5.0,
+                                offset: Offset(2, 2),
+                              ),
+                              Shadow(
+                                color: Colors.black,
+                                blurRadius: 5.0,
+                                offset: Offset(-2, 2),
+                              ),
+                              Shadow(
+                                color: Colors.black,
+                                blurRadius: 5.0,
+                                offset: Offset(2, -2),
+                              ),
+                            ], */
+                          ),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow.shade700,
+                        ),
+                      ],
+                    ),
+                  ), */
                   if (widget.product.discount != null)
                     Align(
                       alignment: Alignment.topRight,

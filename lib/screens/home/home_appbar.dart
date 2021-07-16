@@ -29,6 +29,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
       preferredSize: widget.preferredSize,
       child: Container(
         color: Color(0xFF669933),
+        width: double.infinity,
         child: Column(
           children: [
             SizedBox(
@@ -80,12 +81,13 @@ class _HomeAppBarState extends State<HomeAppBar> {
               ),
             ),
             Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Flexible(
-                    child: FittedBox(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 980),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    FittedBox(
                       fit: BoxFit.contain,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
@@ -115,84 +117,54 @@ class _HomeAppBarState extends State<HomeAppBar> {
                         ),
                       ),
                     ),
-                  ),
-                  widget.sizeWidth > 500
-                      ? Flexible(
-                          child: Center(
-                            child: TextField(
-                              key: GlobalObjectKey('search'),
-                              decoration: InputDecoration(
-                                hintText: 'Search for your garden needs',
-                                hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide.none,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide.none,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: Color(0xFF669933),
-                                ),
-                              ),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey,
-                              ),
+                    Expanded(
+                      child: Center(
+                        child: TextField(
+                          key: GlobalObjectKey('search'),
+                          decoration: InputDecoration(
+                            hintText: 'Search for your garden needs',
+                            hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
+                            ),
+                            suffixIcon: Icon(
+                              Icons.search,
+                              color: Color(0xFF669933),
                             ),
                           ),
-                        )
-                      : Center(
-                        child: IntrinsicWidth(
-                          child: TextField(
-                            key: GlobalObjectKey('search'),
-                            decoration: InputDecoration(
-                              hintText: 'Search for your garden needs',
-                              hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none,
-                              ),
-                              suffixIcon: Icon(
-                                Icons.search,
-                                color: Color(0xFF669933),
-                              ),
-                            ),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey,
-                            ),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey,
                           ),
                         ),
                       ),
-                  Row(
-                    children: [
-                      IconButton(
-                        tooltip: 'My Cart',
-                        icon: Icon(Icons.shopping_cart_outlined),
-                        onPressed: () {},
-                      ),
-                      PopupMenuButton(
-                        tooltip: 'Show Menu',
-                        icon: Icon(Icons.menu_rounded),
-                        offset: Offset(0, widget.preferredSize.height + -40),
-                        itemBuilder: (context) {
-                          return _menuChoices;
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          tooltip: 'My Cart',
+                          icon: Icon(Icons.shopping_cart_outlined),
+                          onPressed: () {},
+                        ),
+                        PopupMenuButton(
+                          tooltip: 'Show Menu',
+                          icon: Icon(Icons.menu_rounded),
+                          offset: Offset(0, widget.preferredSize.height + -40),
+                          itemBuilder: (context) {
+                            return _menuChoices;
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -73,21 +73,20 @@ class _DealsState extends State<Deals> {
               ],
             ),
             if (widget.itemView == ItemView.row) ...[
-              Expanded(
-                child: SingleChildScrollView(
+              Flexible(
+                child: ListView(
+                  controller: ScrollController(),
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: widget.items
-                        .map(
-                          (e) => Container(
-                            margin: EdgeInsets.symmetric(horizontal: widget.itemSpacing),
-                            width: widget.itemWidth,
-                            child: ProductBox(product: e),
-                          ),
-                        )
-                        .toList(),
-                  ),
+                  shrinkWrap: true,
+                  children: widget.items
+                      .map(
+                        (e) => Container(
+                          margin: EdgeInsets.symmetric(horizontal: widget.itemSpacing),
+                          width: widget.itemWidth,
+                          child: ProductBox(product: e),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ] else ...[
