@@ -16,12 +16,19 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
+  final TextEditingController _txtCtrl = TextEditingController();
+  final FocusNode _txtFocus = FocusNode();
   final String _appName = 'Earthly';
   final Widget _appIcon = Image.asset(
     'assets/images/earthly.png',
     filterQuality: FilterQuality.medium,
     height: 24,
   );
+
+  @override
+  initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +127,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
                     Expanded(
                       child: Center(
                         child: TextField(
-                          key: GlobalObjectKey('search'),
+                          controller: _txtCtrl,
+                          focusNode: _txtFocus,
                           decoration: InputDecoration(
                             hintText: 'Search for your garden needs',
                             hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
@@ -134,15 +142,50 @@ class _HomeAppBarState extends State<HomeAppBar> {
                               borderRadius: BorderRadius.circular(5),
                               borderSide: BorderSide.none,
                             ),
-                            suffixIcon: Icon(
-                              Icons.search,
-                              color: Color(0xFF669933),
+                            suffixIcon: AnimatedSwitcher(
+                              duration: Duration(milliseconds: 500),
+                              switchInCurve: Curves.linear,
+                              switchOutCurve: Curves.linear,
+                              transitionBuilder: (child, animation) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                );
+                              },
+                              child: _txtCtrl.text.length <= 0
+                                  ? IconButton(
+                                    key: ValueKey('search'),
+                                      icon: Icon(
+                                        Icons.search,
+                                        color: Color(0xFF669933),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _txtFocus.requestFocus();
+                                        });
+                                      },
+                                    )
+                                  : IconButton(
+                                    key: ValueKey('clear'),
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: Color(0xFF669933),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _txtCtrl.clear();
+                                        });
+                                      },
+                                    ),
                             ),
                           ),
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
                           ),
+                          onChanged: (value) {
+                            setState(() {});
+                          },
                         ),
                       ),
                     ),
