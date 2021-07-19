@@ -27,121 +27,123 @@ class _PromoBannerState extends State<PromoBanner> {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxHeight: widget.screenWidth > 600 ? 250 : 180,
           maxWidth: 980,
+          maxHeight: widget.screenWidth > 1000 ? 250 : 300,
         ),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  flex: widget.sideChildren != null && widget.screenWidth > 1000 ? 80 : 100,
-                  child: CarouselSlider.builder(
-                    key: Key('MainPromos'),
-                    carouselController: _carouselController,
-                    itemCount: widget.mainChildren.length,
-                    options: CarouselOptions(
-                      viewportFraction: 1.0,
-                      initialPage: 0,
-                      reverse: false,
-                      enableInfiniteScroll: true,
-                      scrollDirection: Axis.horizontal,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 8),
-                      autoPlayAnimationDuration: Duration(milliseconds: 300),
-                      autoPlayCurve: Curves.easeInOut,
-                      onPageChanged: (index, _) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                    ),
-                    itemBuilder: (_, index, heroIndex) {
-                      return InkWell(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(widget.mainChildren[index].image),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          print('Navigating to ${widget.mainChildren[index].url}');
-                        },
-                      );
-                    },
-                  ),
-                ),
-                if (widget.sideChildren != null && widget.screenWidth > 1000) ...[
-                  SizedBox(width: 5),
+        child: AspectRatio(
+          aspectRatio: widget.screenWidth > 1000 ? 980 / 250 : 980 / 300,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                   Expanded(
-                    flex: 20,
-                    child: InkWell(
-                      child: CarouselSlider.builder(
-                        key: Key('SidePromos'),
-                        itemCount: widget.sideChildren!.length,
-                        options: CarouselOptions(
-                          viewportFraction: 1.0,
-                          initialPage: 0,
-                          reverse: false,
-                          enableInfiniteScroll: true,
-                          scrollDirection: Axis.vertical,
-                          autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 5),
-                          autoPlayAnimationDuration: Duration(milliseconds: 300),
-                          autoPlayCurve: Curves.easeInOut,
-                        ),
-                        itemBuilder: (context, index, heroIndex) {
-                          return InkWell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(widget.sideChildren![index].image),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              print('Navigating to ${widget.sideChildren![index].url}');
-                            },
-                          );
+                    flex: widget.sideChildren != null && widget.screenWidth > 1000 ? 80 : 100,
+                    child: CarouselSlider.builder(
+                      key: Key('MainPromos'),
+                      carouselController: _carouselController,
+                      itemCount: widget.mainChildren.length,
+                      options: CarouselOptions(
+                        viewportFraction: 1.0,
+                        initialPage: 0,
+                        reverse: false,
+                        enableInfiniteScroll: true,
+                        scrollDirection: Axis.horizontal,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 8),
+                        autoPlayAnimationDuration: Duration(milliseconds: 300),
+                        autoPlayCurve: Curves.easeInOut,
+                        onPageChanged: (index, _) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
                         },
                       ),
+                      itemBuilder: (_, index, heroIndex) {
+                        return InkWell(
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(widget.mainChildren[index].image),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            print('Navigating to ${widget.mainChildren[index].url}');
+                          },
+                        );
+                      },
                     ),
                   ),
+                  if (widget.sideChildren != null && widget.screenWidth > 1000) ...[
+                    SizedBox(width: 5),
+                    Expanded(
+                      flex: 20,
+                      child: InkWell(
+                        child: CarouselSlider.builder(
+                          key: Key('SidePromos'),
+                          itemCount: widget.sideChildren!.length,
+                          options: CarouselOptions(
+                            viewportFraction: 1.0,
+                            initialPage: 0,
+                            reverse: false,
+                            enableInfiniteScroll: true,
+                            scrollDirection: Axis.vertical,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 5),
+                            autoPlayAnimationDuration: Duration(milliseconds: 300),
+                            autoPlayCurve: Curves.easeInOut,
+                          ),
+                          itemBuilder: (context, index, heroIndex) {
+                            return InkWell(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(widget.sideChildren![index].image),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                print('Navigating to ${widget.sideChildren![index].url}');
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
-              ],
-            ),
-            Positioned(
-              left: 10,
-              bottom: 10,
-              //alignment: Alignment.bottomLeft,
-              child: AnimatedSmoothIndicator(
-                activeIndex: _currentIndex,
-                curve: Curves.easeInOut,
-                duration: Duration(milliseconds: 300),
-                count: widget.mainChildren.length,
-                axisDirection: Axis.horizontal,
-                effect: ExpandingDotsEffect(
-                  dotHeight: 10,
-                  dotWidth: 10,
-                  activeDotColor: Colors.white.withOpacity(0.8),
-                  dotColor: Colors.grey.shade400.withOpacity(0.8),
-                ),
-                onDotClicked: (index) {
-                  _carouselController.animateToPage(index);
-                },
               ),
-            ),
-          ],
+              Positioned(
+                left: 10,
+                bottom: 10,
+                //alignment: Alignment.bottomLeft,
+                child: AnimatedSmoothIndicator(
+                  activeIndex: _currentIndex,
+                  curve: Curves.easeInOut,
+                  duration: Duration(milliseconds: 300),
+                  count: widget.mainChildren.length,
+                  axisDirection: Axis.horizontal,
+                  effect: ExpandingDotsEffect(
+                    dotHeight: 10,
+                    dotWidth: 10,
+                    activeDotColor: Colors.white.withOpacity(0.8),
+                    dotColor: Colors.grey.shade400.withOpacity(0.8),
+                  ),
+                  onDotClicked: (index) {
+                    _carouselController.animateToPage(index);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
