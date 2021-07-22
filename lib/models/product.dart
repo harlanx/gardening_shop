@@ -26,7 +26,9 @@ class Product {
     if (discount == null) {
       throw UnimplementedError('Cannot compute discounted price without the discount value provided');
     } else {
-      //assert(discount! >= 1 && discount! <= 100, 'Discount must be in range between 1 to 100 only');
+      if (discount! < 1 && discount! > 100) {
+        throw RangeError.range(discount!, 1, 100, 'Discount must be in range between 1 to 100 only');
+      }
       return double.parse((pricing - (pricing * (discount! / 100))).toStringAsFixed(2));
     }
   }

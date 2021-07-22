@@ -57,6 +57,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  dependencies:
+    dependency: "direct main"
+    description:
+      name: dependencies
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
+  disposables:
+    dependency: transitive
+    description:
+      name: disposables
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   fake_async:
     dependency: transitive
     description:
@@ -81,6 +95,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  function_helpers:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: b3c4fe159c8b8315f26bf8b05b6e25b3a79a5d7d
+      url: "https://github.com/harlanx/function_helpers.git"
+    source: git
+    version: "1.0.0"
   matcher:
     dependency: transitive
     description:
@@ -130,6 +153,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.5"
   sky_engine:
     dependency: transitive
     description: flutter

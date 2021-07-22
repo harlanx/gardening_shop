@@ -1,6 +1,5 @@
-import 'dart:math' as math;
+import 'package:function_helpers/function_helpers.dart' hide Product;
 import 'package:gardening_shop/models/models.dart';
-import 'dart:convert';
 
 class SampleData {
   static final List<MainCategoriesProperties> mainCategories = [
@@ -70,7 +69,7 @@ class SampleData {
       discount: RandomHelper.randRangeDouble(1, 40),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
-      images: List.generate(3, (index) => RandomHelper.randImage()),
+      images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
       rating: RandomHelper.randRangeDouble(1, 5),
       tags: List.generate(10, (index) => RandomHelper.randString(10)),
     ),
@@ -83,7 +82,7 @@ class SampleData {
       pricing: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
-      images: List.generate(3, (index) => RandomHelper.randImage()),
+      images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
       rating: RandomHelper.randRangeDouble(1, 5),
       tags: List.generate(10, (index) => RandomHelper.randString(10)),
     ),
@@ -96,7 +95,7 @@ class SampleData {
       pricing: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
-      images: List.generate(3, (index) => RandomHelper.randImage()),
+      images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
       rating: RandomHelper.randRangeDouble(1, 5),
       tags: List.generate(10, (index) => RandomHelper.randString(10)),
     ),
@@ -109,7 +108,7 @@ class SampleData {
       pricing: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
-      images: List.generate(3, (index) => RandomHelper.randImage()),
+      images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
       rating: RandomHelper.randRangeDouble(1, 5),
       tags: List.generate(10, (index) => RandomHelper.randString(10)),
     ),
@@ -122,59 +121,34 @@ class SampleData {
       pricing: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
-      images: List.generate(3, (index) => RandomHelper.randImage()),
+      images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
       rating: RandomHelper.randRangeDouble(1, 5),
       tags: List.generate(10, (index) => RandomHelper.randString(10)),
     ),
   );
 }
 
-class RandomHelper {
-  static String randString(int length) {
-    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    return String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(math.Random().nextInt(_chars.length))));
-  }
-
-  static String randCryptoString(int len) {
-    var values = List<int>.generate(len, (i) => math.Random.secure().nextInt(255));
-    return base64UrlEncode(values);
-  }
-
-  static int randRangeInt(int min, int max) {
-    int result = min + math.Random().nextInt((max - min) + 1);
-    return result;
-  }
-
-  static double randRangeDouble(double min, double max) {
-    double result = math.Random().nextDouble() * (min - max) + max;
-    return double.parse(result.toStringAsFixed(2));
-  }
-
-  static String randImage() {
-    final List<String> images = [
-      'assets/images/products/fertilizer_1.jpg',
-      'assets/images/products/fertilizer_2.jpg',
-      'assets/images/products/garden_tools_1.jpg',
-      'assets/images/products/garden_tools_2.jpg',
-      'assets/images/products/garden_tools_3.jpg',
-      'assets/images/products/pesticide_1.jpg',
-      'assets/images/products/pesticide_2.jpg',
-      'assets/images/products/pesticide_3.jpg',
-      'assets/images/products/pesticide_4.jpg',
-      'assets/images/products/plants_1.jpg',
-      'assets/images/products/plants_2.jpg',
-      'assets/images/products/plants_3.jpg',
-      'assets/images/products/plants_4.jpg',
-      'assets/images/products/pots_1.jpg',
-      'assets/images/products/pots_2.jpg',
-      'assets/images/products/pots_3.jpg',
-      'assets/images/products/pots_4.jpg',
-      'assets/images/products/seedlings_1.jpg',
-      'assets/images/products/seedlings_2.jpg',
-      'assets/images/products/seedlings_3.jpg',
-      'assets/images/products/seeds_1.jpg',
-      'assets/images/products/seeds_2.jpg',
-    ];
-    return images[randRangeInt(0, images.length - 1)];
-  }
-}
+List<String> sampleProductImages = [
+  'assets/images/products/fertilizer_1.jpg',
+  'assets/images/products/fertilizer_2.jpg',
+  'assets/images/products/garden_tools_1.jpg',
+  'assets/images/products/garden_tools_2.jpg',
+  'assets/images/products/garden_tools_3.jpg',
+  'assets/images/products/pesticide_1.jpg',
+  'assets/images/products/pesticide_2.jpg',
+  'assets/images/products/pesticide_3.jpg',
+  'assets/images/products/pesticide_4.jpg',
+  'assets/images/products/plants_1.jpg',
+  'assets/images/products/plants_2.jpg',
+  'assets/images/products/plants_3.jpg',
+  'assets/images/products/plants_4.jpg',
+  'assets/images/products/pots_1.jpg',
+  'assets/images/products/pots_2.jpg',
+  'assets/images/products/pots_3.jpg',
+  'assets/images/products/pots_4.jpg',
+  'assets/images/products/seedlings_1.jpg',
+  'assets/images/products/seedlings_2.jpg',
+  'assets/images/products/seedlings_3.jpg',
+  'assets/images/products/seeds_1.jpg',
+  'assets/images/products/seeds_2.jpg',
+];
