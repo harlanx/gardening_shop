@@ -108,7 +108,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   _appIcon,
-                                  widget.sizeWidth > 500
+                                  widget.sizeWidth > 600
                                       ? Text(
                                           _appName.toUpperCase(),
                                           style: TextStyle(
