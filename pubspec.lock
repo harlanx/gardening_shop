@@ -100,7 +100,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b3c4fe159c8b8315f26bf8b05b6e25b3a79a5d7d
+      resolved-ref: "719da26d9c256f78fc303e7fcee634d429b8bee8"
       url: "https://github.com/harlanx/function_helpers.git"
     source: git
     version: "1.0.0"

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gardening_shop/models/models.dart';
+import 'package:function_helpers/models/models.dart';
 
 class ProductBox extends StatefulWidget {
   final Product product;
@@ -30,7 +30,7 @@ class _ProductBoxState extends State<ProductBox> {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    widget.product.images[0],
+                    widget.product.images![0],
                     fit: BoxFit.cover,
                   ),
                   /* FractionallySizedBox(
@@ -130,7 +130,7 @@ class _ProductBoxState extends State<ProductBox> {
                                     textAlign: TextAlign.start,
                                   ),
                                 Text(
-                                  '₱${widget.product.pricing}',
+                                  '₱${widget.product.price}',
                                   style: TextStyle(
                                     color: widget.product.discount != null ? Colors.grey : Colors.black,
                                     fontWeight: FontWeight.w500,

@@ -1,4 +1,4 @@
-import 'package:function_helpers/function_helpers.dart' hide Product;
+import 'package:function_helpers/function_helpers.dart';
 import 'package:gardening_shop/models/models.dart';
 
 class SampleData {
@@ -65,7 +65,7 @@ class SampleData {
     (index) => Product(
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(20),
-      pricing: RandomHelper.randRangeDouble(250, 700),
+      price: RandomHelper.randRangeDouble(250, 700),
       discount: RandomHelper.randRangeDouble(1, 40),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
@@ -79,7 +79,7 @@ class SampleData {
     (index) => Product(
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(10),
-      pricing: RandomHelper.randRangeDouble(250, 700),
+      price: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
       images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
@@ -92,7 +92,7 @@ class SampleData {
     (index) => Product(
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(10),
-      pricing: RandomHelper.randRangeDouble(250, 700),
+      price: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
       images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
@@ -105,7 +105,7 @@ class SampleData {
     (index) => Product(
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(10),
-      pricing: RandomHelper.randRangeDouble(250, 700),
+      price: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
       images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),
@@ -118,7 +118,7 @@ class SampleData {
     (index) => Product(
       id: RandomHelper.randRangeInt(1, 100),
       name: RandomHelper.randString(10),
-      pricing: RandomHelper.randRangeDouble(250, 700),
+      price: RandomHelper.randRangeDouble(250, 700),
       remaining: RandomHelper.randRangeInt(5, 15),
       sold: RandomHelper.randRangeInt(20, 80),
       images: List.generate(3, (index) => RandomHelper.randSingleImage(sampleProductImages)),

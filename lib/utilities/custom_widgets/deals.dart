@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gardening_shop/models/models.dart';
-
+import 'package:function_helpers/models/models.dart';
 import 'product_box.dart';
 
 class Deals extends StatefulWidget {
