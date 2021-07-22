@@ -33,14 +33,3 @@ class Product {
     }
   }
 }
-
-enum ProductCategory {
-  containers,
-  decorations,
-  fertilizers,
-  peticides,
-  plants,
-  seedlins,
-  seeds,
-  tools,
-}
