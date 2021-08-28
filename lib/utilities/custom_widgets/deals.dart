@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:function_helpers/models/models.dart';
+import 'package:gardening_shop/utilities/constants.dart';
 import 'product_box.dart';
 
 class Deals extends StatefulWidget {
@@ -46,7 +47,7 @@ class _DealsState extends State<Deals> {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxHeight: widget.itemView == ItemView.row ? widget.height : double.infinity,
-          maxWidth: 980,
+          maxWidth: ShopCons.kMaxScreenWidth,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

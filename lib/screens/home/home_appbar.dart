@@ -89,7 +89,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
             ),
             Flexible(
               child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 980),
+                constraints: BoxConstraints(maxWidth: ShopCons.kMaxScreenWidth),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,

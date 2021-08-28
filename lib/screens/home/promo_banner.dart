@@ -24,14 +24,15 @@ class _PromoBannerState extends State<PromoBanner> {
 
   @override
   Widget build(BuildContext context) {
+    double maxW = ShopCons.kMaxScreenWidth;
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: 980,
-          maxHeight: widget.screenWidth > 1000 ? 250 : 300,
+          maxWidth: maxW,
+          maxHeight: widget.screenWidth > 1000 ? 300 : 350,
         ),
         child: AspectRatio(
-          aspectRatio: widget.screenWidth > 1000 ? 980 / 250 : 980 / 300,
+          aspectRatio: widget.screenWidth > 1000 ? maxW / 300 : maxW / 350,
           child: Stack(
             fit: StackFit.expand,
             children: [

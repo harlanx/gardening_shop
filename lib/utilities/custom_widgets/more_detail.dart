@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gardening_shop/utilities/constants.dart';
 
 class MoreDetail extends StatelessWidget {
   final String title;
@@ -14,7 +15,7 @@ class MoreDetail extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: 980,
+          maxWidth: ShopCons.kMaxScreenWidth,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
