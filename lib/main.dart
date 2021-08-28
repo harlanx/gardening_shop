@@ -16,11 +16,26 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         fontFamily: 'Quicksand',
         brightness: Brightness.dark,
-        scrollbarTheme: ScrollbarThemeData(thumbColor: MaterialStateProperty.all(Colors.grey.shade500)),
+        scrollbarTheme: ScrollbarThemeData(
+          trackColor: MaterialStateProperty.all(Colors.white),
+          thumbColor: MaterialStateProperty.resolveWith(
+            (states) {
+              if (states.contains(MaterialState.hovered) && !states.contains(MaterialState.dragged)) {
+                return Color(0xFFA8A8A8);
+              }
+              if (states.containsAll([MaterialState.hovered, MaterialState.dragged])) {
+                return Color(0xFF787878);
+              }
+              return Color(0xFFC1C1C1);
+            },
+          ),
+          isAlwaysShown: true,
+          showTrackOnHover: true
+        ),
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) =>Home(),
+        '/': (context) => Home(),
       },
     );
   }

@@ -21,13 +21,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: HomeAppBar(sizeWidth: _size.width),
-      body: SingleChildScrollView(
+      body: Scrollbar(
+        controller: _scrollController,
+        interactive: true,
+        thickness: 12.0,
+        radius: Radius.zero,
+        child: SingleChildScrollView(
+          controller: _scrollController,
         padding: EdgeInsets.only(top: 20),
         scrollDirection: Axis.vertical,
         child: Column(
@@ -152,6 +159,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ],
+          ),
         ),
       ),
     );
