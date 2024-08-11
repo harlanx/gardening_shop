@@ -1,5 +1,7 @@
 # gardening_shop
 
+Visit the working preview on [Earthly](https://harlanx.github.io/gardening_shop/) deployed via Github Pages.
+
 A responsive and adaptive Homepage layout of a shopping site themed for Gardening Products created using Dart with Flutter SDK for Web (Hummingbird).
 
 All assets except the icons does not belong to me and was only used for educational purposes only.
