@@ -22,7 +22,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
   final Widget _appIcon = Image.asset(
     'assets/images/earthly.png',
     filterQuality: FilterQuality.medium,
-    height: 24,
+    height: 32,
   );
 
   @override
@@ -60,18 +60,36 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   ),
                   const VerticalDivider(),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       const SelectableText('Follow our page'),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 3.0),
+                          child: Tooltip(
+                            message: 'Follow us on facebook',
+                            child: InkWell(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Icon(MdiIcons.facebook),
+                              ),
+                              onTap: () {},
+                            ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 3.0),
-                        child: Tooltip(
-                          message: 'Follow us on twitter',
-                          child: InkWell(
-                            child: Icon(MdiIcons.twitter),
-                            onTap: () {},
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 3.0),
+                          child: Tooltip(
+                            message: 'Follow us on twitter',
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: InkWell(
+                                child: Icon(MdiIcons.twitter),
+                                onTap: () {},
+                              ),
+                            ),
                           ),
                         ),
                       ),
