@@ -26,7 +26,7 @@ class Deals extends StatefulWidget {
   final double itemSpacing;
 
   const Deals({
-    Key? key,
+    super.key,
     required this.title,
     this.titleAlignment = Alignment.centerLeft,
     required this.items,
@@ -34,10 +34,10 @@ class Deals extends StatefulWidget {
     this.height = 100,
     this.itemWidth = 150,
     this.itemSpacing = 2,
-  }) : super(key: key);
+  });
 
   @override
-  _DealsState createState() => _DealsState();
+  State<Deals> createState() => _DealsState();
 }
 
 class _DealsState extends State<Deals> {
@@ -46,7 +46,8 @@ class _DealsState extends State<Deals> {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxHeight: widget.itemView == ItemView.row ? widget.height : double.infinity,
+          maxHeight:
+              widget.itemView == ItemView.row ? widget.height : double.infinity,
           maxWidth: ShopCons.kMaxScreenWidth,
         ),
         child: Column(
@@ -61,7 +62,7 @@ class _DealsState extends State<Deals> {
                   child: widget.title,
                 ),
                 InkWell(
-                  child: Text(
+                  child: const Text(
                     'See more >>',
                     style: TextStyle(
                       color: Colors.grey,
@@ -81,7 +82,8 @@ class _DealsState extends State<Deals> {
                   children: widget.items
                       .map(
                         (e) => Container(
-                          margin: EdgeInsets.symmetric(horizontal: widget.itemSpacing),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: widget.itemSpacing),
                           width: widget.itemWidth,
                           child: ProductBox(product: e),
                         ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:function_helpers/models/models.dart';
 
@@ -6,12 +5,12 @@ class ProductBox extends StatefulWidget {
   final Product product;
 
   const ProductBox({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   @override
-  _ProductBoxState createState() => _ProductBoxState();
+  State<ProductBox> createState() => _ProductBoxState();
 }
 
 class _ProductBoxState extends State<ProductBox> {
@@ -86,7 +85,7 @@ class _ProductBoxState extends State<ProductBox> {
                           color: Colors.green.shade700,
                           child: Text(
                             '${widget.product.discount!.toStringAsFixed(0)}%',
-                            style: TextStyle(fontWeight: FontWeight.w800),
+                            style: const TextStyle(fontWeight: FontWeight.w800),
                           ),
                         ),
                       ),
@@ -97,7 +96,7 @@ class _ProductBoxState extends State<ProductBox> {
             Expanded(
               flex: 40,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
                     Expanded(
@@ -106,7 +105,7 @@ class _ProductBoxState extends State<ProductBox> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           widget.product.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
@@ -123,7 +122,7 @@ class _ProductBoxState extends State<ProductBox> {
                                 if (widget.product.discount != null)
                                   Text(
                                     '₱${widget.product.discountedPrice} ',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -132,9 +131,13 @@ class _ProductBoxState extends State<ProductBox> {
                                 Text(
                                   '₱${widget.product.price}',
                                   style: TextStyle(
-                                    color: widget.product.discount != null ? Colors.grey : Colors.black,
+                                    color: widget.product.discount != null
+                                        ? Colors.grey
+                                        : Colors.black,
                                     fontWeight: FontWeight.w500,
-                                    decoration: widget.product.discount != null ? TextDecoration.lineThrough : TextDecoration.none,
+                                    decoration: widget.product.discount != null
+                                        ? TextDecoration.lineThrough
+                                        : TextDecoration.none,
                                     decorationThickness: 2.0,
                                   ),
                                   textAlign: TextAlign.start,
@@ -145,7 +148,7 @@ class _ProductBoxState extends State<ProductBox> {
                           Expanded(
                             child: Text(
                               '${widget.product.sold} Sold',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),

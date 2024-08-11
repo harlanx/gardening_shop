@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gardening_shop/data/sample_data.dart';
@@ -13,22 +12,20 @@ part 'home/main_categories.dart';
 part 'home/home_appbar.dart';
 
 class Home extends StatefulWidget {
-  const Home({
-    Key? key,
-  }) : super(key: key);
+  const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: HomeAppBar(sizeWidth: _size.width),
+      appBar: HomeAppBar(sizeWidth: size.width),
       body: Scrollbar(
         controller: _scrollController,
         interactive: true,
@@ -36,21 +33,21 @@ class _HomeState extends State<Home> {
         radius: Radius.zero,
         child: SingleChildScrollView(
           controller: _scrollController,
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           scrollDirection: Axis.vertical,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               PromoBanner(
-                screenWidth: _size.width,
+                screenWidth: size.width,
                 mainChildren: SampleData.mainPromos,
                 sideChildren: SampleData.sidePromos,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               MainCategories(
                 list: SampleData.mainCategories,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Deals(
                 titleAlignment: Alignment.center,
                 height: 450,
@@ -61,12 +58,12 @@ class _HomeState extends State<Home> {
                   height: 80,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Deals(
                 title: Row(
                   children: [
                     Icon(Icons.star, color: Colors.yellow.shade700),
-                    Text(
+                    const Text(
                       'Top Products',
                       style: TextStyle(
                         color: Colors.black,
@@ -79,12 +76,13 @@ class _HomeState extends State<Home> {
                 height: 250,
                 items: SampleData.topProducts,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Deals(
                 title: Row(
                   children: [
-                    Icon(Icons.new_releases_rounded, color: Colors.brown.shade300),
-                    Text(
+                    Icon(Icons.new_releases_rounded,
+                        color: Colors.brown.shade300),
+                    const Text(
                       'Newest',
                       style: TextStyle(
                         color: Colors.black,
@@ -97,12 +95,12 @@ class _HomeState extends State<Home> {
                 height: 250,
                 items: SampleData.newProducts,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Deals(
                 title: Row(
                   children: [
                     Icon(MdiIcons.fire, color: Colors.red.shade500),
-                    Text(
+                    const Text(
                       'Trending',
                       style: TextStyle(
                         color: Colors.black,
@@ -115,7 +113,7 @@ class _HomeState extends State<Home> {
                 height: 250,
                 items: SampleData.trendingProducts,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Deals(
                 height: 261.5,
                 itemWidth: 161.5,
@@ -124,7 +122,7 @@ class _HomeState extends State<Home> {
                 title: Row(
                   children: [
                     Icon(Icons.spa_rounded, color: Colors.green.shade300),
-                    Text(
+                    const Text(
                       'Daily Discover',
                       style: TextStyle(
                         color: Colors.black,
@@ -136,9 +134,9 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                color: Color(0xFF443022),
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Column(
+                color: const Color(0xFF443022),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     MoreDetail(

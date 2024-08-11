@@ -7,19 +7,19 @@ class PromoBanner extends StatefulWidget {
   final double screenWidth;
 
   const PromoBanner({
-    Key? key,
+    super.key,
     required this.mainChildren,
     this.sideChildren,
     this.height = 100,
     required this.screenWidth,
-  }) : super(key: key);
+  });
 
   @override
-  _PromoBannerState createState() => _PromoBannerState();
+  State<PromoBanner> createState() => _PromoBannerState();
 }
 
 class _PromoBannerState extends State<PromoBanner> {
-  final CarouselController _carouselController = CarouselController();
+  final _carouselController = CarouselSliderController();
   int _currentIndex = 0;
 
   @override
@@ -41,9 +41,12 @@ class _PromoBannerState extends State<PromoBanner> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    flex: widget.sideChildren != null && widget.screenWidth > 1000 ? 80 : 100,
+                    flex:
+                        widget.sideChildren != null && widget.screenWidth > 1000
+                            ? 80
+                            : 100,
                     child: CarouselSlider.builder(
-                      key: Key('MainPromos'),
+                      key: const Key('MainPromos'),
                       carouselController: _carouselController,
                       itemCount: widget.mainChildren.length,
                       options: CarouselOptions(
@@ -53,8 +56,9 @@ class _PromoBannerState extends State<PromoBanner> {
                         enableInfiniteScroll: true,
                         scrollDirection: Axis.horizontal,
                         autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 8),
-                        autoPlayAnimationDuration: Duration(milliseconds: 300),
+                        autoPlayInterval: const Duration(seconds: 8),
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 300),
                         autoPlayCurve: Curves.easeInOut,
                         onPageChanged: (index, _) {
                           setState(() {
@@ -68,25 +72,28 @@ class _PromoBannerState extends State<PromoBanner> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(widget.mainChildren[index].image),
+                                image: AssetImage(
+                                    widget.mainChildren[index].image),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           onTap: () {
-                            print('Navigating to ${widget.mainChildren[index].url}');
+                            debugPrint(
+                                'Navigating to ${widget.mainChildren[index].url}');
                           },
                         );
                       },
                     ),
                   ),
-                  if (widget.sideChildren != null && widget.screenWidth > 1000) ...[
-                    SizedBox(width: 5),
+                  if (widget.sideChildren != null &&
+                      widget.screenWidth > 1000) ...[
+                    const SizedBox(width: 5),
                     Expanded(
                       flex: 20,
                       child: InkWell(
                         child: CarouselSlider.builder(
-                          key: Key('SidePromos'),
+                          key: const Key('SidePromos'),
                           itemCount: widget.sideChildren!.length,
                           options: CarouselOptions(
                             viewportFraction: 1.0,
@@ -95,8 +102,9 @@ class _PromoBannerState extends State<PromoBanner> {
                             enableInfiniteScroll: true,
                             scrollDirection: Axis.vertical,
                             autoPlay: true,
-                            autoPlayInterval: Duration(seconds: 5),
-                            autoPlayAnimationDuration: Duration(milliseconds: 300),
+                            autoPlayInterval: const Duration(seconds: 5),
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 300),
                             autoPlayCurve: Curves.easeInOut,
                           ),
                           itemBuilder: (context, index, heroIndex) {
@@ -104,13 +112,15 @@ class _PromoBannerState extends State<PromoBanner> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage(widget.sideChildren![index].image),
+                                    image: AssetImage(
+                                        widget.sideChildren![index].image),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                               onTap: () {
-                                print('Navigating to ${widget.sideChildren![index].url}');
+                                debugPrint(
+                                    'Navigating to ${widget.sideChildren![index].url}');
                               },
                             );
                           },
@@ -127,7 +137,7 @@ class _PromoBannerState extends State<PromoBanner> {
                 child: AnimatedSmoothIndicator(
                   activeIndex: _currentIndex,
                   curve: Curves.easeInOut,
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   count: widget.mainChildren.length,
                   axisDirection: Axis.horizontal,
                   effect: ExpandingDotsEffect(

@@ -6,14 +6,14 @@ abstract class PromoItem {
 
 class MainPromoItem extends PromoItem {
   MainPromoItem({
-    required String image,
-    required String url,
-  }) : super(image: image, url: url);
+    required super.image,
+    required super.url,
+  });
 }
 
 class SidePromoItem extends PromoItem {
   SidePromoItem({
-    required String image,
-    required String url,
-  }) : super(image: image, url: url);
+    required super.image,
+    required super.url,
+  });
 }

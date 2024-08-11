@@ -5,16 +5,16 @@ class MoreDetail extends StatelessWidget {
   final String title;
   final String detail;
   const MoreDetail({
-    Key? key,
+    super.key,
     required this.title,
     required this.detail,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: ShopCons.kMaxScreenWidth,
         ),
         child: Column(
@@ -24,11 +24,15 @@ class MoreDetail extends StatelessWidget {
           children: [
             SelectableText(
               title,
-              style: TextStyle(color: Colors.grey.shade400, fontSize: 20, fontWeight: FontWeight.w800),
+              style: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800),
             ),
             SelectableText(
               detail,
-              style: TextStyle(color: Colors.grey.shade400, fontWeight: FontWeight.w400),
+              style: TextStyle(
+                  color: Colors.grey.shade400, fontWeight: FontWeight.w400),
             ),
           ],
         ),

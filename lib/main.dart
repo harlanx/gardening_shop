@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gardening_shop/screens/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,25 +19,27 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Quicksand',
         brightness: Brightness.dark,
         scrollbarTheme: ScrollbarThemeData(
-          trackColor: MaterialStateProperty.all(Colors.white),
-          thumbColor: MaterialStateProperty.resolveWith(
+          trackColor: WidgetStateProperty.all(Colors.white),
+          thumbColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.hovered) && !states.contains(MaterialState.dragged)) {
-                return Color(0xFFA8A8A8);
+              if (states.contains(WidgetState.hovered) &&
+                  !states.contains(WidgetState.dragged)) {
+                return const Color(0xFFA8A8A8);
               }
-              if (states.containsAll([MaterialState.hovered, MaterialState.dragged])) {
-                return Color(0xFF787878);
+              if (states
+                  .containsAll([WidgetState.hovered, WidgetState.dragged])) {
+                return const Color(0xFF787878);
               }
-              return Color(0xFFC1C1C1);
+              return const Color(0xFFC1C1C1);
             },
           ),
-          isAlwaysShown: true,
-          showTrackOnHover: true
+          thumbVisibility: WidgetStateProperty.all(true),
+          trackVisibility: WidgetStateProperty.all(true),
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '',
       routes: {
-        '/': (context) => Home(),
+        '': (context) => const Home(),
       },
     );
   }

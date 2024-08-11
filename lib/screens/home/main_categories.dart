@@ -2,10 +2,10 @@ part of '../../screens/home.dart';
 
 class MainCategories extends StatefulWidget {
   final List<MainCategoriesProperties> list;
-  const MainCategories({Key? key, required this.list}) : super(key: key);
+  const MainCategories({super.key, required this.list});
 
   @override
-  _MainCategoriesState createState() => _MainCategoriesState();
+  State<MainCategories> createState() => _MainCategoriesState();
 }
 
 class _MainCategoriesState extends State<MainCategories> {
@@ -23,9 +23,11 @@ class _MainCategoriesState extends State<MainCategories> {
         children: List.generate(
           widget.list.length,
           (index) => AnimatedContainer(
-            transform: hoveredIndex == index ? hoveredTransformState : Matrix4.identity(),
+            transform: hoveredIndex == index
+                ? hoveredTransformState
+                : Matrix4.identity(),
             curve: Curves.easeOutCubic,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             height: 120,
             width: 100,
             child: Column(
@@ -43,16 +45,20 @@ class _MainCategoriesState extends State<MainCategories> {
                           color: Colors.red,
                         ),
                       ), */
-                      padding: EdgeInsets.all(50),
+                      padding: const EdgeInsets.all(50),
                       child: InkWell(
                         child: SvgPicture.asset(
                           widget.list[index].icon,
                           height: 100,
                           width: 100,
-                          color: hoveredIndex == index ? hoveredColorState : Colors.grey,
+                          colorFilter: ColorFilter.mode(
+                              hoveredIndex == index
+                                  ? hoveredColorState
+                                  : Colors.grey,
+                              BlendMode.srcIn),
                         ),
                         onTap: () {
-                          print('Category: ${index+1} tapped!');
+                          debugPrint('Category: ${index + 1} tapped!');
                         },
                         onHover: (isHovered) {
                           setState(() {
@@ -69,7 +75,9 @@ class _MainCategoriesState extends State<MainCategories> {
                     widget.list[index].label,
                     style: TextStyle(
                       fontFamily: 'Itim',
-                      color: hoveredIndex == index ? hoveredColorState : Colors.grey,
+                      color: hoveredIndex == index
+                          ? hoveredColorState
+                          : Colors.grey,
                     ),
                   ),
                 ),
@@ -84,7 +92,7 @@ class _MainCategoriesState extends State<MainCategories> {
   void _updateHoverState(bool hovered, int index) {
     hoveredIndex = index;
     if (hovered) {
-      hoveredColorState = Color(0xFF669933);
+      hoveredColorState = const Color(0xFF669933);
       hoveredTransformState = Matrix4.identity()
         ..scale(1.1)
         ..translate(-4.5, -4.5, 0);

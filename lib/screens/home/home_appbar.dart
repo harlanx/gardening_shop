@@ -3,16 +3,16 @@ part of '../../screens/home.dart';
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double sizeWidth;
   const HomeAppBar({
-    Key? key,
+    super.key,
     required this.sizeWidth,
     this.preferredSize = const Size(double.infinity, 100),
-  }) : super(key: key);
+  });
 
   @override
   final Size preferredSize;
 
   @override
-  _HomeAppBarState createState() => _HomeAppBarState();
+  State<HomeAppBar> createState() => _HomeAppBarState();
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
@@ -35,7 +35,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return PreferredSize(
       preferredSize: widget.preferredSize,
       child: Container(
-        color: Color(0xFF669933),
+        color: const Color(0xFF669933),
         width: double.infinity,
         child: Column(
           children: [
@@ -45,30 +45,23 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    child: Text('Sell on Earthly'),
+                    child: const Text('Sell on Earthly'),
                     onTap: () {},
                   ),
-                  VerticalDivider(),
+                  const VerticalDivider(),
                   InkWell(
-                    child: Text('Download App'),
+                    child: const Text('Download App'),
                     onTap: () {},
                   ),
-                  VerticalDivider(),
+                  const VerticalDivider(),
                   InkWell(
-                    child: Text('Customer Care'),
+                    child: const Text('Customer Care'),
                     onTap: () {},
                   ),
-                  VerticalDivider(),
+                  const VerticalDivider(),
                   Row(
                     children: [
-                      SelectableText('Follow our page'),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 3.0),
-                        child: Tooltip(
-                          message: 'Follow us on facebook',
-                          child: InkWell(
-                            child: Icon(MdiIcons.facebook),
-                            onTap: () {},
+                      const SelectableText('Follow our page'),
                           ),
                         ),
                       ),
@@ -89,15 +82,17 @@ class _HomeAppBarState extends State<HomeAppBar> {
             ),
             Flexible(
               child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: ShopCons.kMaxScreenWidth),
+                constraints:
+                    const BoxConstraints(maxWidth: ShopCons.kMaxScreenWidth),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     FittedBox(
-                      fit: BoxFit.contain,
+                      fit: BoxFit.scaleDown,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10),
                         child: Row(
                           children: [
                             InkWell(
@@ -111,11 +106,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                   widget.sizeWidth > 600
                                       ? Text(
                                           _appName.toUpperCase(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontFamily: 'Righteous',
                                           ),
                                         )
-                                      : SizedBox.shrink(),
+                                      : const SizedBox.shrink(),
                                 ],
                               ),
                               onTap: () {},
@@ -131,7 +126,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           focusNode: _txtFocus,
                           decoration: InputDecoration(
                             hintText: 'Search for your garden needs',
-                            hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+                            hintStyle: const TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w300,
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -143,7 +141,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                               borderSide: BorderSide.none,
                             ),
                             suffixIcon: AnimatedSwitcher(
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               switchInCurve: Curves.linear,
                               switchOutCurve: Curves.linear,
                               transitionBuilder: (child, animation) {
@@ -152,10 +150,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                   child: child,
                                 );
                               },
-                              child: _txtCtrl.text.length <= 0
+                              child: _txtCtrl.text.isEmpty
                                   ? IconButton(
-                                    key: ValueKey('search'),
-                                      icon: Icon(
+                                      key: const ValueKey('search'),
+                                      icon: const Icon(
                                         Icons.search,
                                         color: Color(0xFF669933),
                                       ),
@@ -166,8 +164,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                       },
                                     )
                                   : IconButton(
-                                    key: ValueKey('clear'),
-                                      icon: Icon(
+                                      key: const ValueKey('clear'),
+                                      icon: const Icon(
                                         Icons.close,
                                         color: Color(0xFF669933),
                                       ),
@@ -179,7 +177,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                                     ),
                             ),
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
                           ),
@@ -193,12 +191,12 @@ class _HomeAppBarState extends State<HomeAppBar> {
                       children: [
                         IconButton(
                           tooltip: 'My Cart',
-                          icon: Icon(Icons.shopping_cart_outlined),
+                          icon: const Icon(Icons.shopping_cart_outlined),
                           onPressed: () {},
                         ),
                         PopupMenuButton(
                           tooltip: 'Show Menu',
-                          icon: Icon(Icons.menu_rounded),
+                          icon: const Icon(Icons.menu_rounded),
                           offset: Offset(0, widget.preferredSize.height + -40),
                           itemBuilder: (context) {
                             return _menuChoices;
@@ -216,8 +214,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
     );
   }
 
-  List<PopupMenuItem> _menuChoices = [
-    PopupMenuItem(
+  final _menuChoices = <PopupMenuItem>[
+    const PopupMenuItem(
       value: 1,
       child: SizedBox(
         height: 20,
@@ -233,7 +231,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
         ),
       ),
     ),
-    PopupMenuItem(
+    const PopupMenuItem(
       value: 2,
       child: SizedBox(
         height: 20,
@@ -249,7 +247,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
         ),
       ),
     ),
-    PopupMenuItem(
+    const PopupMenuItem(
       value: 3,
       child: SizedBox(
         height: 20,
