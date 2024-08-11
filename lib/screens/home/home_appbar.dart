@@ -197,7 +197,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           ),
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey,
+                            color: Colors.black,
                           ),
                           onChanged: (value) {
                             setState(() {});
