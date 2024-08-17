@@ -55,7 +55,7 @@ class BottomDetails extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const MoreDetail(
-            title: 'Buy and Sell Online on Shopee PH',
+            title: 'Buy and Sell Online on Earthly',
             detail:
                 '''Welcome to Earthly, your one-stop online shop for all things gardening. At Earthly, we are passionate about bringing the beauty of nature into your home and garden. Our carefully curated selection of plants and seedlings includes everything from lush indoor greens to vibrant outdoor blooms, ensuring that you find the perfect addition to your space. Whether you're a seasoned gardener or just starting out, we have the plants to suit your needs.
                 
