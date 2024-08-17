@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.all(5.0),
                       child: Image.asset(
                         'assets/icons/png/sale.png',
-                        height: 80,
+                        height: 50,
                         fit: BoxFit.contain,
                       ),
                     ),
