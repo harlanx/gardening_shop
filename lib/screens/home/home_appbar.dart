@@ -1,15 +1,12 @@
 part of '../../screens/home.dart';
 
-class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final double sizeWidth;
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({
     super.key,
-    required this.sizeWidth,
-    this.preferredSize = const Size(double.infinity, 100),
+    required this.screenSize,
   });
 
-  @override
-  final Size preferredSize;
+  final Size screenSize;
 
   @override
   State<HomeAppBar> createState() => _HomeAppBarState();
@@ -18,77 +15,131 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _HomeAppBarState extends State<HomeAppBar> {
   final TextEditingController _txtCtrl = TextEditingController();
   final FocusNode _txtFocus = FocusNode();
-  final String _appName = 'Earthly';
-  final Widget _appIcon = Image.asset(
-    'assets/images/earthly.png',
-    filterQuality: FilterQuality.medium,
-    height: 32,
-  );
 
-  @override
-  initState() {
-    super.initState();
-  }
+  final _menuChoices = <PopupMenuItem>[
+    PopupMenuItem(
+      value: 1,
+      child: SizedBox(
+        height: 20,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            FittedBox(
+              fit: BoxFit.contain,
+              child: Icon(
+                Icons.person_rounded,
+                color: Colors.grey.shade700,
+              ),
+            ),
+            const Text(
+              'Account',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    ),
+    PopupMenuItem(
+      value: 2,
+      child: SizedBox(
+        height: 20,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            FittedBox(
+              fit: BoxFit.contain,
+              child: Icon(
+                Icons.settings,
+                color: Colors.grey.shade700,
+              ),
+            ),
+            const Text(
+              'Settings',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    ),
+    PopupMenuItem(
+      value: 3,
+      child: SizedBox(
+        height: 20,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            FittedBox(
+              fit: BoxFit.contain,
+              child: Icon(
+                Icons.logout_rounded,
+                color: Colors.grey.shade700,
+              ),
+            ),
+            const Text(
+              'Log out',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: widget.preferredSize,
+    return PinnedHeaderSliver(
       child: Container(
-        color: const Color(0xFF669933),
+        color: AppData.color,
         width: double.infinity,
+        padding: const EdgeInsets.all(10),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            if (widget.screenSize.height >= 350 &&
+                widget.screenSize.width >= 350)
+              Wrap(
+                spacing: 20,
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   InkWell(
                     child: const Text('Sell on Earthly'),
                     onTap: () {},
                   ),
-                  const VerticalDivider(),
                   InkWell(
                     child: const Text('Download App'),
                     onTap: () {},
                   ),
-                  const VerticalDivider(),
                   InkWell(
                     child: const Text('Customer Care'),
                     onTap: () {},
                   ),
-                  const VerticalDivider(),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SelectableText('Follow our page'),
+                      const SelectableText('Follow Us:'),
                       Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: Tooltip(
-                            message: 'Follow us on facebook',
-                            child: InkWell(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Icon(MdiIcons.facebook),
-                              ),
-                              onTap: () {},
+                        child: Tooltip(
+                          message: 'Follow us on facebook',
+                          child: InkWell(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Icon(MdiIcons.facebook),
                             ),
+                            onTap: () {},
                           ),
                         ),
                       ),
+                      const VerticalDivider(),
                       Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: Tooltip(
-                            message: 'Follow us on twitter',
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: InkWell(
-                                child: Icon(MdiIcons.twitter),
-                                onTap: () {},
-                              ),
+                        child: Tooltip(
+                          message: 'Follow us on twitter',
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: InkWell(
+                              child: Icon(MdiIcons.twitter),
+                              onTap: () {},
                             ),
                           ),
                         ),
@@ -97,48 +148,49 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   ),
                 ],
               ),
-            ),
-            Flexible(
-              child: ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: ShopCons.kMaxScreenWidth),
-                child: Row(
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final w = constraints.maxWidth;
+                return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10),
-                        child: Row(
-                          children: [
-                            InkWell(
-                              hoverColor: Colors.transparent,
-                              splashColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  _appIcon,
-                                  widget.sizeWidth > 600
-                                      ? Text(
-                                          _appName.toUpperCase(),
-                                          style: const TextStyle(
-                                            fontFamily: 'Righteous',
-                                          ),
-                                        )
-                                      : const SizedBox.shrink(),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            hoverColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppData.icon,
+                                  filterQuality: FilterQuality.medium,
+                                  height: 32,
+                                ),
+                                if (w > 600) ...[
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    AppData.name.toUpperCase(),
+                                    style: const TextStyle(
+                                      fontFamily: 'Righteous',
+                                    ),
+                                  ),
                                 ],
-                              ),
-                              onTap: () {},
+                                const SizedBox(width: 10),
+                              ],
                             ),
-                          ],
-                        ),
+                            onTap: () {},
+                          ),
+                        ],
                       ),
                     ),
-                    Expanded(
-                      child: Center(
+                    Flexible(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints.tightFor(width: 600),
                         child: TextField(
                           controller: _txtCtrl,
                           focusNode: _txtFocus,
@@ -205,81 +257,44 @@ class _HomeAppBarState extends State<HomeAppBar> {
                         ),
                       ),
                     ),
-                    Row(
-                      children: [
-                        IconButton(
-                          tooltip: 'My Cart',
-                          icon: const Icon(Icons.shopping_cart_outlined),
-                          onPressed: () {},
-                        ),
-                        PopupMenuButton(
-                          tooltip: 'Show Menu',
-                          icon: const Icon(Icons.menu_rounded),
-                          offset: Offset(0, widget.preferredSize.height + -40),
-                          itemBuilder: (context) {
-                            return _menuChoices;
-                          },
-                        ),
-                      ],
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: IconButton(
+                                tooltip: 'My Cart',
+                                icon: const Icon(Icons.shopping_cart_outlined),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: PopupMenuButton(
+                                tooltip: 'Show Menu',
+                                icon: const Icon(Icons.menu_rounded),
+                                color: Colors.white,
+                                itemBuilder: (context) {
+                                  return _menuChoices;
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),
       ),
     );
   }
-
-  final _menuChoices = <PopupMenuItem>[
-    const PopupMenuItem(
-      value: 1,
-      child: SizedBox(
-        height: 20,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            FittedBox(
-              fit: BoxFit.contain,
-              child: Icon(Icons.person_rounded),
-            ),
-            Text('Account'),
-          ],
-        ),
-      ),
-    ),
-    const PopupMenuItem(
-      value: 2,
-      child: SizedBox(
-        height: 20,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            FittedBox(
-              fit: BoxFit.contain,
-              child: Icon(Icons.settings),
-            ),
-            Text('Settings'),
-          ],
-        ),
-      ),
-    ),
-    const PopupMenuItem(
-      value: 3,
-      child: SizedBox(
-        height: 20,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            FittedBox(
-              fit: BoxFit.contain,
-              child: Icon(Icons.logout_rounded),
-            ),
-            Text('Log out'),
-          ],
-        ),
-      ),
-    ),
-  ];
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gardening_shop/utilities/constants.dart';
 
 class MoreDetail extends StatelessWidget {
   final String title;
@@ -12,30 +11,29 @@ class MoreDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: ShopCons.kMaxScreenWidth,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SelectableText(
-              title,
-              style: TextStyle(
-                  color: Colors.grey.shade400,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 1000),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SelectableText(
+            title,
+            style: TextStyle(
+              color: Colors.grey.shade900,
+              fontSize: 20,
+              fontWeight: FontWeight.w800,
             ),
-            SelectableText(
-              detail,
-              style: TextStyle(
-                  color: Colors.grey.shade400, fontWeight: FontWeight.w400),
+          ),
+          SelectableText(
+            detail,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -58,7 +58,8 @@ class _MainCategoriesState extends State<MainCategories> {
                               BlendMode.srcIn),
                         ),
                         onTap: () {
-                          debugPrint('Category: ${index + 1} tapped!');
+                          debugPrint(
+                              'Category: ${widget.list[index].label} tapped!');
                         },
                         onHover: (isHovered) {
                           setState(() {

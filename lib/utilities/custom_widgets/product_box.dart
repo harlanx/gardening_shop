@@ -14,13 +14,24 @@ class ProductBox extends StatefulWidget {
 }
 
 class _ProductBoxState extends State<ProductBox> {
+  late final discounted = widget.product.discount != null;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        debugPrint('Navigate to ${widget.product.name}');
+      },
       child: Card(
         color: Colors.white,
-        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(
+            color: Colors.grey.shade400,
+            width: 0.5,
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
         child: Column(
           children: [
             Expanded(
@@ -32,60 +43,22 @@ class _ProductBoxState extends State<ProductBox> {
                     widget.product.images![0],
                     fit: BoxFit.cover,
                   ),
-                  /* FractionallySizedBox(
-                    alignment: Alignment.bottomRight,
-                    heightFactor: 0.2,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          '${widget.product.rating}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            /* shadows: [
-                              Shadow(
-                                color: Colors.black,
-                                blurRadius: 5.0,
-                                offset: Offset(-2, -2),
-                              ),
-                              Shadow(
-                                color: Colors.black,
-                                blurRadius: 5.0,
-                                offset: Offset(2, 2),
-                              ),
-                              Shadow(
-                                color: Colors.black,
-                                blurRadius: 5.0,
-                                offset: Offset(-2, 2),
-                              ),
-                              Shadow(
-                                color: Colors.black,
-                                blurRadius: 5.0,
-                                offset: Offset(2, -2),
-                              ),
-                            ], */
-                          ),
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow.shade700,
-                        ),
-                      ],
-                    ),
-                  ), */
                   if (widget.product.discount != null)
                     Align(
                       alignment: Alignment.topRight,
-                      child: ClipOval(
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 40,
-                          color: Colors.green.shade700,
-                          child: Text(
-                            '${widget.product.discount!.toStringAsFixed(0)}%',
-                            style: const TextStyle(fontWeight: FontWeight.w800),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ClipOval(
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            width: 40,
+                            color: Colors.green.shade700,
+                            child: Text(
+                              '${widget.product.discount!.toStringAsFixed(0)}%',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w800),
+                            ),
                           ),
                         ),
                       ),
@@ -115,33 +88,40 @@ class _ProductBoxState extends State<ProductBox> {
                     Expanded(
                       flex: 50,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Row(
                               children: [
-                                if (widget.product.discount != null)
-                                  Text(
-                                    '₱${widget.product.discountedPrice} ',
+                                Flexible(
+                                  child: Text(
+                                    '₱${discounted ? widget.product.discountedPrice.ceil() : widget.product.price.ceil()}',
+                                    textScaler: const TextScaler.linear(1.2),
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
+                                    maxLines: 1,
                                     textAlign: TextAlign.start,
                                   ),
-                                Text(
-                                  '₱${widget.product.price}',
-                                  style: TextStyle(
-                                    color: widget.product.discount != null
-                                        ? Colors.grey
-                                        : Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                    decoration: widget.product.discount != null
-                                        ? TextDecoration.lineThrough
-                                        : TextDecoration.none,
-                                    decorationThickness: 2.0,
-                                  ),
-                                  textAlign: TextAlign.start,
                                 ),
+                                if (discounted)
+                                  Flexible(
+                                    child: Text(
+                                      '₱${widget.product.price.ceil()}',
+                                      textScaler: const TextScaler.linear(0.9),
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w500,
+                                        decoration: TextDecoration.lineThrough,
+                                        decorationThickness: 2.0,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      maxLines: 1,
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
                               ],
                             ),
                           ),
