@@ -21,8 +21,9 @@ class _PromoBannerState extends State<PromoBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 300),
+    return Container(
+      margin: const EdgeInsets.only(top: 8),
+      constraints: const BoxConstraints(maxHeight: 200),
       child: LayoutBuilder(builder: (context, constraints) {
         final w = constraints.maxWidth;
         return Row(
@@ -38,7 +39,7 @@ class _PromoBannerState extends State<PromoBanner> {
                       height: (w >= 1000) ? double.infinity : null,
                       width: double.infinity,
                       constraints:
-                          const BoxConstraints(minWidth: 700, maxWidth: 800),
+                          const BoxConstraints(minWidth: 600, maxWidth: 700),
                       child: CarouselSlider.builder(
                         key: const Key('MainPromos'),
                         carouselController: _horizControl,
@@ -66,7 +67,7 @@ class _PromoBannerState extends State<PromoBanner> {
                           return InkWell(
                             child: Image.asset(
                               widget.mainItems[index].image,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                             onTap: () {
                               debugPrint(
@@ -110,10 +111,11 @@ class _PromoBannerState extends State<PromoBanner> {
                 }
               },
             ),
-            if (w >= 1000)
+            if (w >= 1000) ...[
+              const SizedBox(width: 8),
               Flexible(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 220),
+                  constraints: const BoxConstraints(maxWidth: 160),
                   child: SizedBox.expand(
                     child: CarouselSlider.builder(
                       key: const Key('SidePromos'),
@@ -137,7 +139,7 @@ class _PromoBannerState extends State<PromoBanner> {
                         return InkWell(
                           child: Image.asset(
                             widget.sideItems![index].image,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                           onTap: () {
                             debugPrint(
@@ -149,6 +151,7 @@ class _PromoBannerState extends State<PromoBanner> {
                   ),
                 ),
               ),
+            ]
           ],
         );
       }),
